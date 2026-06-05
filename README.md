@@ -1,4 +1,14 @@
+<img src="icons/logo_hs_white_bg_circle_60x60.png" alt="Hostsmith" width="60" height="60" align="left" />
+
 # @hostsmith/n8n-nodes-hostsmith
+
+[![npm version](https://img.shields.io/npm/v/@hostsmith/n8n-nodes-hostsmith?logo=npm)](https://www.npmjs.com/package/@hostsmith/n8n-nodes-hostsmith)
+[![npm downloads](https://img.shields.io/npm/dm/@hostsmith/n8n-nodes-hostsmith)](https://www.npmjs.com/package/@hostsmith/n8n-nodes-hostsmith)
+[![CI](https://github.com/hostsmith/n8n-nodes/actions/workflows/ci.yml/badge.svg)](https://github.com/hostsmith/n8n-nodes/actions/workflows/ci.yml)
+[![License: MIT](https://img.shields.io/npm/l/@hostsmith/n8n-nodes-hostsmith)](LICENSE.md)
+[![n8n community node](https://img.shields.io/badge/n8n-community%20node-FF6D5A?logo=n8n&logoColor=white)](https://docs.n8n.io/integrations/community-nodes/)
+
+<br clear="left" />
 
 An [n8n](https://n8n.io) community node for [Hostsmith](https://hostsmith.net) - manage your Hostsmith sites, domains, and account from your workflows.
 
