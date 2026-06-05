@@ -1,17 +1,17 @@
 {
-	"node": "n8n-nodes-example",
+	"node": "@hostsmith/n8n-nodes-hostsmith.hostsmith",
 	"nodeVersion": "1.0",
 	"codexVersion": "1.0",
 	"categories": ["Development", "Developer Tools"],
 	"resources": {
 		"credentialDocumentation": [
 			{
-				"url": "https://github.com/org/repo?tab=readme-ov-file#credentials"
+				"url": "https://hostsmith.net/docs/developers/authentication"
 			}
 		],
 		"primaryDocumentation": [
 			{
-				"url": "https://github.com/org/repo?tab=readme-ov-file"
+				"url": "https://hostsmith.net/docs"
 			}
 		]
 	}
