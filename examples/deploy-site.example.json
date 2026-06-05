@@ -1,0 +1,72 @@
+{
+	"name": "Hostsmith — Deploy & List (example)",
+	"nodes": [
+		{
+			"parameters": {},
+			"id": "11111111-1111-1111-1111-111111111111",
+			"name": "When clicking 'Test workflow'",
+			"type": "n8n-nodes-base.manualTrigger",
+			"typeVersion": 1,
+			"position": [260, 300]
+		},
+		{
+			"parameters": {
+				"resource": "site",
+				"operation": "list"
+			},
+			"id": "22222222-2222-2222-2222-222222222222",
+			"name": "List Sites",
+			"type": "n8n-nodes-hostsmith.hostsmith",
+			"typeVersion": 1,
+			"position": [520, 180],
+			"credentials": {
+				"hostsmithOAuth2Api": {
+					"id": "REPLACE_WITH_CREDENTIAL_ID",
+					"name": "Hostsmith OAuth2 API"
+				}
+			}
+		},
+		{
+			"parameters": {
+				"resource": "site",
+				"operation": "deploy",
+				"siteId": "REPLACE_WITH_SITE_ID",
+				"files": {
+					"file": [
+						{
+							"source": "text",
+							"content": "<!doctype html><html><head><meta charset=\"utf-8\"><title>Hello</title></head><body><h1>Hello from n8n + Hostsmith</h1></body></html>",
+							"fileName": "index.html"
+						}
+					]
+				}
+			},
+			"id": "33333333-3333-3333-3333-333333333333",
+			"name": "Deploy index.html (text)",
+			"type": "n8n-nodes-hostsmith.hostsmith",
+			"typeVersion": 1,
+			"position": [520, 420],
+			"credentials": {
+				"hostsmithOAuth2Api": {
+					"id": "REPLACE_WITH_CREDENTIAL_ID",
+					"name": "Hostsmith OAuth2 API"
+				}
+			}
+		}
+	],
+	"connections": {
+		"When clicking 'Test workflow'": {
+			"main": [
+				[
+					{ "node": "List Sites", "type": "main", "index": 0 },
+					{ "node": "Deploy index.html (text)", "type": "main", "index": 0 }
+				]
+			]
+		}
+	},
+	"active": false,
+	"settings": {},
+	"meta": {
+		"templateNote": "Example for manual testing. After import: (1) open each Hostsmith node and select your Hostsmith OAuth2 API credential; (2) in 'Deploy index.html (text)', set Site ID (from List Sites output or Site → Create). For a multipart test (>5 MB) or binary, add a row with Source = Binary and point Binary Property at a binary field from an upstream node (e.g. an HTTP Request download)."
+	}
+}
