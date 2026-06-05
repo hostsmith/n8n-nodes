@@ -1,5 +1,5 @@
 {
-	"name": "n8n-nodes-hostsmith",
+	"name": "@hostsmith/n8n-nodes-hostsmith",
 	"version": "0.0.0",
 	"description": "n8n community node to manage Hostsmith sites, domains, and account",
 	"license": "MIT",

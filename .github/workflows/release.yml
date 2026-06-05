@@ -138,8 +138,8 @@ jobs:
           TAG="${{ needs.release.outputs.tag }}"
           TARBALL=$(ls *.tgz)
           {
-            printf 'Install in n8n (Settings -> Community Nodes):\n```\nn8n-nodes-hostsmith@%s\n```\n\n' "${TAG#v}"
-            printf 'Or via npm:\n```\nnpm install n8n-nodes-hostsmith@%s\n```\n\n---\n\n' "${TAG#v}"
+            printf 'Install in n8n (Settings -> Community Nodes):\n```\n@hostsmith/n8n-nodes-hostsmith@%s\n```\n\n' "${TAG#v}"
+            printf 'Or via npm:\n```\nnpm install @hostsmith/n8n-nodes-hostsmith@%s\n```\n\n---\n\n' "${TAG#v}"
             cat <<'CHANGELOG'
           ${{ steps.changelog.outputs.stdout }}
           CHANGELOG
@@ -151,7 +151,7 @@ jobs:
             --title "$TAG" \
             --notes-file release-notes.md
 
-  # Publishes n8n-nodes-hostsmith to npm using GitHub OIDC (npm Trusted
+  # Publishes @hostsmith/n8n-nodes-hostsmith to npm using GitHub OIDC (npm Trusted
   # Publisher). Stable tags (vX.Y.Z) publish under 'latest'. Prerelease tags
   # (vX.Y.Z-*) publish under 'rc' so they don't override the default install
   # target. npm provenance is required for n8n verified community nodes.

@@ -1,5 +1,5 @@
 {
-	"name": "Hostsmith — Deploy & List (example)",
+	"name": "Hostsmith - Deploy & List (example)",
 	"nodes": [
 		{
 			"parameters": {},
@@ -16,7 +16,7 @@
 			},
 			"id": "22222222-2222-2222-2222-222222222222",
 			"name": "List Sites",
-			"type": "n8n-nodes-hostsmith.hostsmith",
+			"type": "@hostsmith/n8n-nodes-hostsmith.hostsmith",
 			"typeVersion": 1,
 			"position": [520, 180],
 			"credentials": {
@@ -43,7 +43,7 @@
 			},
 			"id": "33333333-3333-3333-3333-333333333333",
 			"name": "Deploy index.html (text)",
-			"type": "n8n-nodes-hostsmith.hostsmith",
+			"type": "@hostsmith/n8n-nodes-hostsmith.hostsmith",
 			"typeVersion": 1,
 			"position": [520, 420],
 			"credentials": {
