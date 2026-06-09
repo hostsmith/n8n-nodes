@@ -84,13 +84,30 @@ jobs:
             fi
           fi
 
+      - name: Stamp version into the tag
+        if: github.ref_type != 'tag' && steps.tag.outputs.released == 'true'
+        # cog computes the version but commits nothing (disable_bump_commit),
+        # so its tag points at a commit whose package.json still reads 0.0.0.
+        # That makes the published npm artifact unverifiable against any commit.
+        # Fix it on the tag only: stamp package.json with the release version,
+        # make a local bot commit, and move the tag onto it. The commit lives
+        # only in the runner's checkout - we never push the branch, so main
+        # stays at 0.0.0 and branch protection is untouched.
+        env:
+          TAG: ${{ steps.tag.outputs.tag }}
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          npm version "${TAG#v}" --no-git-tag-version --allow-same-version
+          git commit -am "chore(release): ${TAG}"
+          git tag -f "$TAG" HEAD
+
       - name: Push tag
         if: github.ref_type != 'tag' && steps.tag.outputs.released == 'true'
-        # Push only the tag - cog doesn't create a bump commit
-        # (disable_bump_commit), so the tag points at the existing
-        # branch HEAD. No writes to the branch, branch protection
-        # untouched, history clean.
-        run: git push origin "${{ steps.tag.outputs.tag }}"
+        # Push only the tag (force, so a re-run for the same version is
+        # deterministic). The tag now points at the stamped commit; main is
+        # never pushed, so branch protection stays untouched and history clean.
+        run: git push --force origin "${{ steps.tag.outputs.tag }}"
 
   # Build + publish run in-band in the same workflow run that pushed the
   # tag (whether dispatched, push-to-main, or triggered by a manual tag
